@@ -1,0 +1,19 @@
+<component>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/src/main/content/jcr_root</directory>
+            <outputDirectory>jcr_root</outputDirectory>
+            <excludes>
+                <exclude>**/.DS_Store</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/src/main/content/META-INF</directory>
+            <outputDirectory>META-INF</outputDirectory>
+            <excludes>
+                <exclude>**/.DS_Store</exclude>
+            </excludes>
+            <filtered>true</filtered>
+        </fileSet>
+    </fileSets>
+</component>

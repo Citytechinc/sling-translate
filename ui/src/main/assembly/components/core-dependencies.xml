@@ -1,0 +1,15 @@
+<component>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>jcr_root/apps/sling-translate/install</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <scope>compile</scope>
+            <includes>
+                <include>com.icfolson.aem:sling-translate-api</include>
+                <include>com.icfolson.aem:sling-translate-runtime</include>
+                <include>com.icfolson.aem:sling-translate-example</include>
+            </includes>
+            <useStrictFiltering>true</useStrictFiltering>
+        </dependencySet>
+    </dependencySets>
+</component>
