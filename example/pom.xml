@@ -35,6 +35,7 @@
                         <Sling-Translate-Packages>com.icfolson.sling.translate.example.dictionaries</Sling-Translate-Packages>
                         <Sling-Translate-Processors>com.icfolson.sling.translate.example.processor.ExampleProcessor</Sling-Translate-Processors>
                         <Sling-Translate-Locale-Adaptables>org.apache.sling.api.resource.Resource</Sling-Translate-Locale-Adaptables>
+                        <Sling-Translate-I18n-Root-Path>/apps/sling-translate/i18n</Sling-Translate-I18n-Root-Path>
                     </instructions>
                 </configuration>
             </plugin>

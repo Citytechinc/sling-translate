@@ -14,6 +14,7 @@ public class DictionaryModel {
 
     private final Class<?> dictionaryClass;
     private final Map<Method, TranslationModel> entries = new HashMap<Method, TranslationModel>();
+    private String i18nPath;
 
     public DictionaryModel(final Class<?> dictionaryClass) {
         this.dictionaryClass = dictionaryClass;
@@ -42,5 +43,13 @@ public class DictionaryModel {
 
     public List<TranslationModel> getEntries() {
         return new ArrayList<TranslationModel>(entries.values());
+    }
+
+    public String getI18nPath() {
+        return i18nPath;
+    }
+
+    public void setI18nPath(final String i18nPath) {
+        this.i18nPath = i18nPath;
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.icfolson.sling.translate.api.model.DictionaryModel;
+import com.icfolson.sling.translate.runtime.provider.DictionaryProvider;
 import com.icfolson.sling.translate.runtime.sling.TranslationAdapterFactory;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.adapter.AdapterFactory;
@@ -62,17 +63,18 @@ public class TranslateBundleListener implements BundleTrackerCustomizer, Service
 
     public synchronized Object addingBundle(final Bundle bundle, final BundleEvent event) {
         ServiceRegistration out = null;
-        TranslationDictionaryBundleHelper helper = new TranslationDictionaryBundleHelper(bundle);
-        List<DictionaryModel> models = helper.getModels();
+        final TranslationDictionaryBundleHelper helper = new TranslationDictionaryBundleHelper(bundle);
+        final String i18nRoot = helper.getI18nRootPath();
+        final List<DictionaryModel> models = helper.getModels();
         if (!models.isEmpty()) {
-            String[] adapters = new String[models.size()];
+            final String[] adapters = new String[models.size()];
             for (int i = 0; i < models.size(); i++) {
                 DictionaryModel dictionaryModel = models.get(i);
                 adapters[i] = dictionaryModel.getDictionaryClass().getName();
             }
-            List<String> providedAdaptables = helper.getLocaleAdaptableClassNames();
+            final List<String> providedAdaptables = helper.getLocaleAdaptableClassNames();
             out = registerAdapterFactory(adapters, providedAdaptables,
-                new TranslationAdapterFactory(models, activeProviders));
+                new TranslationAdapterFactory(i18nRoot, models, activeProviders));
         }
         return out;
     }
@@ -117,7 +119,8 @@ public class TranslateBundleListener implements BundleTrackerCustomizer, Service
         Dictionary<String, Object> properties = new Hashtable<>();
         properties.put(AdapterFactory.ADAPTER_CLASSES, adapters);
         properties.put(AdapterFactory.ADAPTABLE_CLASSES, getCurrentAdaptables(providedAdaptables));
-        ServiceRegistration out = bundleContext.registerService(AdapterFactory.SERVICE_NAME, factory, properties);
+        final String[] serviceNames = new String[]{AdapterFactory.SERVICE_NAME, DictionaryProvider.class.getName()};
+        ServiceRegistration out = bundleContext.registerService(serviceNames, factory, properties);
         propertiesMap.put(out, properties);
         providedAdaptablesMap.putAll(out, providedAdaptables);
         return out;

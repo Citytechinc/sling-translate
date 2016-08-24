@@ -10,8 +10,14 @@ import java.util.Locale;
 public final class BundleHeaders {
 
     /**
-     * Packages to be scanned for translation dictionaries.  The value should be a comma-separated list of packages.
-     * Packages can include wildcards (e.g., "com.icfolson.sling.translate.*")
+     * The root repository path at which dictionaries for this bundle will be persisted.  If specified, default values
+     * will be written to the JCR repository at nodes beneath this path, named according to locale.
+     */
+    public static final String SLING_TRANSLATE_I18N_ROOT_PATH = "Sling-Translate-I18n-Root-Path";
+
+    /**
+     * Packages to be scanned for translation dictionaries.  The value should be a comma-separated list of packages, and
+     * any package declaration implicitly includes sub-packages.
      */
     public static final String SLING_TRANSLATE_PACKAGES = "Sling-Translate-Packages";
 

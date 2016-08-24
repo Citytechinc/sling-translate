@@ -29,6 +29,7 @@ public class TranslationDictionaryBundleHelper {
     private final List<TranslationDictionaryProcessor> processors = new ArrayList<>();
     private final List<DictionaryModel> models = new ArrayList<>();
     private final List<String> localeAdaptableClassNames = new ArrayList<>();
+    private String i18nRootPath;
 
     public TranslationDictionaryBundleHelper(final Bundle bundle) {
         this.bundle = bundle;
@@ -68,6 +69,8 @@ public class TranslationDictionaryBundleHelper {
         if (StringUtils.isNotBlank(localeAdaptablesHeader)) {
             Iterables.addAll(localeAdaptableClassNames, Splitter.on(',').trimResults().split(localeAdaptablesHeader));
         }
+
+        i18nRootPath = headers.get("Sling-Translate-I18n-Root-Path");
     }
 
     /**
@@ -79,6 +82,10 @@ public class TranslationDictionaryBundleHelper {
 
     public List<String> getLocaleAdaptableClassNames() {
         return new ArrayList<>(localeAdaptableClassNames);
+    }
+
+    public String getI18nRootPath() {
+        return i18nRootPath;
     }
 
     private TranslationDictionaryProcessor loadProcessor(String className) {

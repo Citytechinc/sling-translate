@@ -104,5 +104,9 @@
             <classifier>obfuscated-apis</classifier>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+        </dependency>
     </dependencies>
 </project>
