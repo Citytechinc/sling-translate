@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/sling-translate"/>
+    <filter root="/apps/sling-translate">
+        <exclude pattern="/apps/sling-translate/i18n(/.*)?" />
+    </filter>
 </workspaceFilter>

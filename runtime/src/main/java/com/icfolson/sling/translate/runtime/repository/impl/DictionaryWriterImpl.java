@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Component(immediate = true, label = "Sling Translate: Dictionary Writer")
+@Component(immediate = true, metatype = true, label = "Sling Translate: Dictionary Writer")
 public class DictionaryWriterImpl implements DictionaryWriter {
 
     private static final String OVERWRITE = "OVERWRITE";
@@ -83,7 +83,9 @@ public class DictionaryWriterImpl implements DictionaryWriter {
                     final LanguageRoot languageRoot = i18nRoot.getLanguage(localeId);
                     TranslationNode translationNode = languageRoot.getTranslation(translationKey);
                     if (translationNode == null || writeMode == WriteMode.OVERWRITE) {
-                        translationNode = languageRoot.createTranslation(translationKey);
+                        translationNode = translationNode == null
+                            ? languageRoot.createTranslation(translationKey)
+                            : languageRoot.getTranslation(translationKey);
                         translationNode.setMessage(message);
                     }
                 }

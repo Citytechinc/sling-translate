@@ -46,7 +46,9 @@ public class LanguageRoot {
         if (translations.containsKey(translationKey)) {
             throw new IllegalStateException("Attempting to create existing translation");
         }
-        return doCreateTranslation(translationKey);
+        TranslationNode out = doCreateTranslation(translationKey);
+        translations.put(translationKey, out);
+        return out;
     }
 
     private TranslationNode doCreateTranslation(final String translationKey) {
