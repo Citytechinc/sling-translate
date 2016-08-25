@@ -64,7 +64,7 @@
         <dependency>
             <groupId>com.icfolson.aem</groupId>
             <artifactId>sling-translate-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

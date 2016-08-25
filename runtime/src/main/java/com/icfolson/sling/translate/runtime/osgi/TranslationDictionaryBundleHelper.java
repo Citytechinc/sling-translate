@@ -70,7 +70,7 @@ public class TranslationDictionaryBundleHelper {
             Iterables.addAll(localeAdaptableClassNames, Splitter.on(',').trimResults().split(localeAdaptablesHeader));
         }
 
-        i18nRootPath = headers.get("Sling-Translate-I18n-Root-Path");
+        i18nRootPath = headers.get(BundleHeaders.SLING_TRANSLATE_I18N_ROOT_PATH);
     }
 
     /**
