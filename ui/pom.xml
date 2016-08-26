@@ -11,7 +11,22 @@
     <artifactId>sling-translate-ui</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <assembly.descriptor>src/main/assembly/zip.xml</assembly.descriptor>
+    </properties>
+
     <profiles>
+        <profile>
+            <id>example</id>
+            <activation>
+                <property>
+                    <name>example</name>
+                </property>
+            </activation>
+            <properties>
+                <assembly.descriptor>src/main/assembly/zip-example.xml</assembly.descriptor>
+            </properties>
+        </profile>
         <profile>
             <id>install</id>
             <activation>
@@ -75,7 +90,7 @@
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                        <descriptor>src/main/assembly/zip.xml</descriptor>
+                        <descriptor>${assembly.descriptor}</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>

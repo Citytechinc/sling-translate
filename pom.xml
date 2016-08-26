@@ -53,6 +53,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <package.goal>install</package.goal>
+        <core.artifactId>sling-translate-core</core.artifactId>
     </properties>
 
     <profiles>
