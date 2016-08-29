@@ -3,7 +3,6 @@ package com.icfolson.sling.translate.runtime.sling;
 import com.icfolson.sling.translate.api.model.DictionaryModel;
 import com.icfolson.sling.translate.runtime.domain.TranslationDictionaryDynamicProxy;
 import com.icfolson.sling.translate.runtime.provider.DictionaryProvider;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.adapter.Adaptable;
 import org.apache.sling.api.adapter.AdapterFactory;
 import org.apache.sling.i18n.ResourceBundleProvider;
@@ -54,10 +53,7 @@ public class TranslationAdapterFactory implements AdapterFactory, DictionaryProv
     }
 
     private Locale getLocale(final Object adaptable) {
-        if (adaptable instanceof SlingHttpServletRequest) {
-            // OOTB support for SlingHttpServletRequest
-            return ((SlingHttpServletRequest) adaptable).getLocale();
-        } else if (adaptable instanceof Adaptable) {
+        if (adaptable instanceof Adaptable) {
             return ((Adaptable) adaptable).adaptTo(Locale.class);
         }
         return null;
