@@ -54,8 +54,7 @@ public class LanguageRoot {
     private TranslationNode doCreateTranslation(final String translationKey) {
         final ResourceResolver resolver = resource.getResourceResolver();
         final Map<String, Object> props = Maps.newHashMap();
-        props.put("jcr:primaryType", "nt:unstructured");
-        props.put("jcr:mixinTypes", new String[]{"sling:Message"});
+        props.put("jcr:primaryType", "sling:MessageEntry");
         props.put("sling:key", translationKey);
         try {
             final String name = JcrUtil.createValidChildName(resource.adaptTo(Node.class), translationKey);
