@@ -6,7 +6,7 @@
     <groupId>com.icfolson.aem</groupId>
     <artifactId>sling-translate</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <organization>
         <name>ICF-Olson</name>
     </organization>
