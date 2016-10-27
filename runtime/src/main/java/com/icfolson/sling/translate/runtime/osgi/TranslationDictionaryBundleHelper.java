@@ -102,18 +102,20 @@ public class TranslationDictionaryBundleHelper {
 
     private void scanPackage(String packageName) {
         Enumeration<URL> classUrls = bundle.findEntries("/" + packageName.replace('.', '/'), "*.class", true);
-        while (classUrls.hasMoreElements()) {
-            URL url = classUrls.nextElement();
-            String className = toClassName(url);
-            try {
-                Class<?> implType = bundle.loadClass(className);
-                TranslationDictionary annotation = implType.getAnnotation(TranslationDictionary.class);
-                if (annotation != null) {
-                    DictionaryModel model = new DictionaryModel(implType);
-                    models.add(model);
+        if (classUrls != null) {
+            while (classUrls.hasMoreElements()) {
+                URL url = classUrls.nextElement();
+                String className = toClassName(url);
+                try {
+                    Class<?> implType = bundle.loadClass(className);
+                    TranslationDictionary annotation = implType.getAnnotation(TranslationDictionary.class);
+                    if (annotation != null) {
+                        DictionaryModel model = new DictionaryModel(implType);
+                        models.add(model);
+                    }
+                } catch (ClassNotFoundException e) {
+                    LOG.warn("Unable to load class", e);
                 }
-            } catch (ClassNotFoundException e) {
-                LOG.warn("Unable to load class", e);
             }
         }
     }
